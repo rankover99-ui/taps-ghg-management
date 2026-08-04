@@ -1,4 +1,5 @@
 import './globals.css';
+import './logo-fix.css';
 
 export const metadata = {
   title: 'APS ESG Platform',
