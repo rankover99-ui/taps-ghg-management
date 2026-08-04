@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TAPS GHG Logger</title>
+  <style>
+    :root{--navy:#17365d;--blue:#2f75b5;--bg:#f3f6f9;--line:#d9e2ec;--text:#1f2937;--muted:#64748b;--danger:#b91c1c}
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--text)}
+    header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:28px 20px}
+    header h1{margin:0 0 5px;font-size:28px} header p{margin:0;opacity:.9}
+    main{max-width:1100px;margin:24px auto;padding:0 16px 40px}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+    .card,.panel{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 3px 12px rgba(15,23,42,.05)}
+    .card{padding:16px}.card small{color:var(--muted)}.card strong{display:block;margin-top:8px;font-size:24px;color:var(--navy)}
+    .panel{padding:18px;margin-bottom:18px}.panel h2{margin:0 0 15px;font-size:20px;color:var(--navy)}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+    input,select{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;font-size:14px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}button{border:0;border-radius:8px;padding:10px 15px;cursor:pointer;font-weight:700}
+    .primary{background:var(--navy);color:#fff}.secondary{background:#e2e8f0}.export{background:#0f766e;color:#fff}.danger{background:#fee2e2;color:var(--danger)}
+    .table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:900px}th,td{border-bottom:1px solid var(--line);padding:10px;text-align:left;font-size:13px}th{background:#eef4fa;color:var(--navy)}
+    .empty{text-align:center;color:var(--muted);padding:25px}.note{font-size:12px;color:var(--muted);margin-top:10px}.right{text-align:right}
+    @media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.cards,.grid{grid-template-columns:1fr}header h1{font-size:23px}}
+  </style>
+</head>
+<body>
+<header><div style="max-width:1100px;margin:auto"><h1>TAPS GHG Management</h1><p>ระบบตัวอย่างสำหรับบันทึกข้อมูลการปล่อยก๊าซเรือนกระจก</p></div></header>
+<main>
+  <section class="cards">
+    <div class="card"><small>Total Emission</small><strong id="total">0.000</strong><small>tCO₂e</small></div>
+    <div class="card"><small>Scope 1</small><strong id="s1">0.000</strong><small>tCO₂e</small></div>
+    <div class="card"><small>Scope 2</small><strong id="s2">0.000</strong><small>tCO₂e</small></div>
+    <div class="card"><small>Scope 3</small><strong id="s3">0.000</strong><small>tCO₂e</small></div>
+  </section>
+
+  <section class="panel">
+    <h2>เพิ่มข้อมูลกิจกรรม</h2>
+    <div class="grid">
+      <div class="field"><label>เดือน</label><input type="month" id="month"></div>
+      <div class="field"><label>Factory</label><select id="factory"><option>HEAD FACTORY</option><option>SOUTH FACTORY</option><option>NORTH FACTORY</option><option>EAST FACTORY</option></select></div>
+      <div class="field"><label>Company</label><select id="company"><option>TAPS</option><option>TFW</option><option>KTG</option><option>UIM</option><option>OTHER</option></select></div>
+      <div class="field"><label>Scope</label><select id="scope"><option value="1">Scope 1</option><option value="2">Scope 2</option><option value="3">Scope 3</option></select></div>
+      <div class="field"><label>Emission Source</label><select id="source"><option>Electricity</option><option>LPG</option><option>Diesel</option><option>Gasoline</option><option>Refrigerant</option><option>Water</option><option>Waste</option><option>Business Travel</option><option>Employee Commute</option><option>Other</option></select></div>
+      <div class="field"><label>Activity Data</label><input type="number" id="activity" min="0" step="0.0001" placeholder="เช่น 12500"></div>
+      <div class="field"><label>Unit</label><input id="unit" placeholder="kWh, L, kg, m³"></div>
+      <div class="field"><label>Emission Factor</label><input type="number" id="factor" min="0" step="0.000001" placeholder="kgCO₂e/unit"></div>
+    </div>
+    <div class="actions"><button class="primary" onclick="saveRecord()">บันทึกข้อมูล</button><button class="secondary" onclick="clearForm()">ล้างฟอร์ม</button><button class="export" onclick="exportCSV()">Export CSV</button><button class="danger" onclick="clearAll()">ลบข้อมูลทั้งหมด</button></div>
+    <div class="note">สูตรคำนวณ: Activity Data × Emission Factor ÷ 1,000 = tCO₂e และข้อมูลจะถูกเก็บไว้ในเบราว์เซอร์เครื่องนี้</div>
+  </section>
+
+  <section class="panel">
+    <h2>รายการที่บันทึก</h2>
+    <div class="table-wrap"><table><thead><tr><th>เดือน</th><th>Factory</th><th>Company</th><th>Scope</th><th>Source</th><th class="right">Activity</th><th>Unit</th><th class="right">EF</th><th class="right">tCO₂e</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+  </section>
+</main>
+<script>
+const KEY='taps-ghg-records-v1';
+let records=JSON.parse(localStorage.getItem(KEY)||'[]');
+function val(id){return document.getElementById(id).value}
+function saveRecord(){
+  const activity=Number(val('activity')),factor=Number(val('factor'));
+  if(!val('month')||!activity||!factor){alert('กรุณากรอกเดือน Activity Data และ Emission Factor');return}
+  records.unshift({id:Date.now(),month:val('month'),factory:val('factory'),company:val('company'),scope:Number(val('scope')),source:val('source'),activity,unit:val('unit'),factor,tco2e:activity*factor/1000});
+  persist();clearForm();render();
+}
+function clearForm(){document.getElementById('activity').value='';document.getElementById('factor').value='';document.getElementById('unit').value=''}
+function removeRecord(id){records=records.filter(r=>r.id!==id);persist();render()}
+function clearAll(){if(confirm('ยืนยันลบข้อมูลทั้งหมด?')){records=[];persist();render()}}
+function persist(){localStorage.setItem(KEY,JSON.stringify(records))}
+function n(v,d=3){return Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function render(){
+  const sums={1:0,2:0,3:0};records.forEach(r=>sums[r.scope]+=r.tco2e);
+  document.getElementById('s1').textContent=n(sums[1]);document.getElementById('s2').textContent=n(sums[2]);document.getElementById('s3').textContent=n(sums[3]);document.getElementById('total').textContent=n(sums[1]+sums[2]+sums[3]);
+  document.getElementById('rows').innerHTML=records.length?records.map(r=>`<tr><td>${r.month}</td><td>${r.factory}</td><td>${r.company}</td><td>Scope ${r.scope}</td><td>${r.source}</td><td class="right">${n(r.activity,2)}</td><td>${r.unit||'-'}</td><td class="right">${n(r.factor,6)}</td><td class="right"><b>${n(r.tco2e)}</b></td><td><button class="danger" onclick="removeRecord(${r.id})">ลบ</button></td></tr>`).join(''):'<tr><td colspan="10" class="empty">ยังไม่มีข้อมูล</td></tr>';
+}
+function exportCSV(){
+ if(!records.length){alert('ยังไม่มีข้อมูลสำหรับ Export');return}
+ const head=['Month','Factory','Company','Scope','Source','Activity Data','Unit','Emission Factor','tCO2e'];
+ const data=records.map(r=>[r.month,r.factory,r.company,'Scope '+r.scope,r.source,r.activity,r.unit,r.factor,r.tco2e]);
+ const csv='\ufeff'+[head,...data].map(row=>row.map(x=>'"'+String(x??'').replaceAll('"','""')+'"').join(',')).join('\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='TAPS_GHG_Data.csv';a.click();URL.revokeObjectURL(a.href);
+}
+document.getElementById('month').value=new Date().toISOString().slice(0,7);render();
+</script>
+</body>
+</html>
