@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc">
+  <title id="title">A.P.S Logo</title>
+  <desc id="desc">Double green circular outline with A.P.S lettering positioned at the bottom inside the circle.</desc>
+  <rect width="1000" height="1000" fill="none"/>
+  <circle cx="500" cy="500" r="410" fill="none" stroke="#00866A" stroke-width="34"/>
+  <circle cx="500" cy="500" r="330" fill="none" stroke="#00866A" stroke-width="34"/>
+  <text x="500" y="790" text-anchor="middle" fill="#00866A" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="178" font-weight="900" letter-spacing="18">A.P.S</text>
+</svg>
