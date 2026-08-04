@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'TAPS ESG Platform',
-  description: 'GHG and ESG data management for TAPS'
+  title: 'APS ESG Platform',
+  description: 'GHG and ESG data management for Amagasaki Pipe (Thailand)'
 };
 
 export default function RootLayout({ children }) {
