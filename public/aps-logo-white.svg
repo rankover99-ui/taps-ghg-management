@@ -4,10 +4,10 @@
   <circle cx="315" cy="315" r="296" fill="none" stroke="#FFFFFF" stroke-width="8"/>
   <circle cx="315" cy="315" r="258" fill="none" stroke="#FFFFFF" stroke-width="8"/>
   <g fill="#FFFFFF" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900">
-    <text x="126" y="482" font-size="94" transform="rotate(-28 126 482)">A</text>
-    <circle cx="235" cy="522" r="14"/>
-    <text x="278" y="548" font-size="104">P</text>
-    <circle cx="405" cy="522" r="14"/>
-    <text x="432" y="472" font-size="102" transform="rotate(26 432 472)">S</text>
+    <text x="148" y="470" font-size="84" transform="rotate(-20 148 470)">A</text>
+    <circle cx="246" cy="512" r="12"/>
+    <text x="286" y="536" font-size="94">P</text>
+    <circle cx="390" cy="512" r="12"/>
+    <text x="414" y="466" font-size="88" transform="rotate(20 414 466)">S</text>
   </g>
 </svg>
