@@ -3,7 +3,8 @@ import './logo-fix.css';
 
 export const metadata = {
   title: 'APS ESG One',
-  description: 'Environmental, Social and Governance data platform for Amagasaki Pipe (Thailand)'
+  description: 'Environmental, Social and Governance data platform for Amagasaki Pipe (Thailand)',
+  icons: { icon: '/aps-logo.svg' }
 };
 
 export default function RootLayout({ children }) {
