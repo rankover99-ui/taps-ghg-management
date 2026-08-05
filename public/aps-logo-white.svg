@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc">
+  <title id="title">A.P.S Logo White</title>
+  <desc id="desc">Double circular APS logo in white for dark backgrounds.</desc>
+  <circle cx="500" cy="500" r="470" fill="none" stroke="#ffffff" stroke-width="14"/>
+  <circle cx="500" cy="500" r="410" fill="none" stroke="#ffffff" stroke-width="14"/>
+  <defs>
+    <path id="aps-arc-white" d="M 205 705 A 385 385 0 0 0 795 705"/>
+  </defs>
+  <text fill="#ffffff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="150" font-weight="900" letter-spacing="10">
+    <textPath href="#aps-arc-white" startOffset="50%" text-anchor="middle">A.P.S</textPath>
+  </text>
+</svg>
