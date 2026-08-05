@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630" role="img" aria-labelledby="title desc">
   <title id="title">A.P.S Logo</title>
   <desc id="desc">Official A.P.S double-circle green mark with curved lettering.</desc>
-  <rect width="630" height="630" fill="#ffffff"/>
   <circle cx="315" cy="315" r="296" fill="none" stroke="#009a3e" stroke-width="8"/>
   <circle cx="315" cy="315" r="258" fill="none" stroke="#009a3e" stroke-width="8"/>
   <g fill="#009a3e" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900">
