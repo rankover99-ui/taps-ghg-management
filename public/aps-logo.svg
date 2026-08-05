@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630" role="img" aria-labelledby="title desc">
   <title id="title">A.P.S Logo</title>
   <desc id="desc">Official A.P.S double-circle green mark with curved lettering.</desc>
-  <circle cx="315" cy="315" r="296" fill="none" stroke="#009a3e" stroke-width="8"/>
-  <circle cx="315" cy="315" r="258" fill="none" stroke="#009a3e" stroke-width="8"/>
-  <g fill="#009a3e" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900">
-    <text x="122" y="492" font-size="92" transform="rotate(-27 122 492)">A</text>
-    <circle cx="238" cy="522" r="14"/>
+  <circle cx="315" cy="315" r="296" fill="none" stroke="#009A3E" stroke-width="8"/>
+  <circle cx="315" cy="315" r="258" fill="none" stroke="#009A3E" stroke-width="8"/>
+  <g fill="#009A3E" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900">
+    <text x="126" y="482" font-size="94" transform="rotate(-28 126 482)">A</text>
+    <circle cx="235" cy="522" r="14"/>
     <text x="278" y="548" font-size="104">P</text>
     <circle cx="405" cy="522" r="14"/>
-    <text x="432" y="475" font-size="100" transform="rotate(24 432 475)">S</text>
+    <text x="432" y="472" font-size="102" transform="rotate(26 432 472)">S</text>
   </g>
 </svg>
