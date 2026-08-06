@@ -1,5 +1,6 @@
 import './globals.css';
 import './logo-fix.css';
+import './dashboard-v1.css';
 
 export const metadata = {
   title: 'APS ESG One',
